@@ -10,5 +10,22 @@
         "author": "skyss0fly",
         "date": "March 11, 2025",
         "content": "This is another test on the blog site."
+    },
+    {
+        "title": "Happy Birthday to me!",
+        "author": "skyss0fly",
+        "date": "March 11, 2025",
+        "content": "Hello Folks. Today i turned 17 Years of age and ive had a pretty decent birthday apart from being stacked with assignments from school:("
+    {
+        "title": "A New Change in The Organisation!",
+        "author": "skyss0fly",
+        "date": "March 11, 2025",
+        "content": "Hello Folks. I've decided to come back to this repository and give it a fresh update. with the Funworld SMP Kicking off soon, its only a matter of time that the development team will have to spring into action and get developing the plugins. And so i just privated some old repositories. updated the Organisation readme and Created this Blog Repository!"
+    },
+    {
+        "title": "A Swift Change in Languages!",
+        "author": "skyss0fly",
+        "date": "March 11, 2025",
+        "content": "Hello Folks. With FunworldMC Retiring from pocketmine, our languages will change from PHP to Java. so stay tuned for future updates!"
     }
 ]
