@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Short Survey</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="banner" class="banner" style="display: none;">
+    This survey is closed. Closed on 14th May 2025.
+  </div>
+
+  <div class="container">
+    <h1>Quick Survey</h1>
+    <form id="surveyForm">
+      <label>username:</label>
+      <input type="text" name="name" required>
+
+      <label>What is your opinion on the quality of the previous survey?</label>
+      <input type="text" name="quality" required>
+
+      <label>How can I improve on gathering data/more effectively make a survey?</label>
+      <input type="text" name="improvement" required>
+
+      <button type="submit">Submit</button>
+    </form>
+
+    <div id="message"></div>
+  </div>
+
+  <script>
+    // Set the close date (YYYY-MM-DD)
+    const closeDate = new Date("2025-05-14");
+    const now = new Date();
+
+    if (now >= closeDate) {
+      document.getElementById("banner").style.display = "block";
+
+      const formElements = document.getElementById("surveyForm").elements;
+      for (let element of formElements) {
+        element.disabled = true;
+      }
+    }
+
+    // OPTIONAL: Discord webhook sending (only runs if form is active)
+    document.getElementById("surveyForm").onsubmit = async (e) => {
+      e.preventDefault();
+      const formData = new FormData(e.target);
+      const data = Object.fromEntries(formData.entries());
+
+      const content = `**New Survey Submission**\n
+**username:** ${data.name}
+**Quality of your previous survey:** ${data.quality}
+**ways of improvements:** ${data.improvement}`;
+
+      await fetch("https://discord.com/api/webhooks/your_webhook_id/your_webhook_token", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ content })
+      });
+
+      document.getElementById("message").innerText = "Thanks for submitting!";
+      e.target.reset();
+    };
+  </script>
+</body>
+</html>
