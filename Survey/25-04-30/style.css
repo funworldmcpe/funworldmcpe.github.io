@@ -15,7 +15,16 @@ body {
   max-width: 500px;
   width: 100%;
 }
-
+.banner {
+  width: 100%;
+  background-color: yellow;
+  color: black;
+  font-weight: bold;
+  padding: 15px;
+  text-align: center;
+  font-size: 18px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
 h1 {
   text-align: center;
   color: #343a40;
