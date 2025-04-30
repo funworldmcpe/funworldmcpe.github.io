@@ -17,11 +17,11 @@ document.addEventListener("DOMContentLoaded", () => {
         })
         .catch(error => console.error("Error loading posts:", error));
 
-    startConfetti();
+   /* startConfetti(); */
 });
 
 /* Confetti Animation */
-function startConfetti() {
+/* function startConfetti() {
     const confetti = document.getElementById("confetti");
     const ctx = confetti.getContext("2d");
     confetti.width = window.innerWidth;
@@ -56,3 +56,5 @@ function startConfetti() {
     for (let i = 0; i < 100; i++) particles.push(createParticle());
     updateParticles();
 }
+
+*/
