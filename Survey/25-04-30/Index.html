@@ -2,15 +2,35 @@
 <html>
 <head>
   <title>Short Survey</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      padding: 20px;
+      max-width: 600px;
+      margin: auto;
+    }
+    input, button {
+      padding: 8px;
+      width: 100%;
+      margin-bottom: 10px;
+    }
+  </style>
 </head>
 <body>
-  <h1>Short Survey</h1>
+  <h1>Quick Survey</h1>
   <form id="surveyForm">
-    <label>username: <input type="text" name="name" required></label><br><br>
-    <label>Do you play skyss0fly's realm? <input type="text" name="userealm" required></label><br><br>
-    <label>How did you hear about us? <input type="text" name="referral" required></label><br><br>
+    <label>userame:</label>
+    <input type="text" name="name" required>
+
+    <label>Do you Play skyss0fly's realm?</label>
+    <input type="text" name="userealm" required>
+
+    <label>How did you hear about us?</label>
+    <input type="text" name="referral" required>
+
     <button type="submit">Submit</button>
   </form>
+
   <div id="message"></div>
 
   <script>
@@ -19,14 +39,21 @@
       const formData = new FormData(e.target);
       const data = Object.fromEntries(formData.entries());
 
-      const response = await fetch("https://funworldsurvey.repl.co/submit", {
+      const content = `**New Survey Submission**\n
+**username:** ${data.name}
+**Does Player Play your realm:** ${data.userealm}
+**How did they find funworld:** ${data.referral}`;
+
+      await fetch("https://discord.com/api/webhooks/1367061106480254978/uK2rsT3Kizq8oOmNuDH6jznTMDAUoKgqztUaNfOJtY5wB7_6MzZONfDSYlDLnKDuqT0a", {
         method: "POST",
-        headers: {"Content-Type": "application/json"},
-        body: JSON.stringify(data)
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          content: content
+        })
       });
 
-      document.getElementById("message").innerText =
-        (await response.text()) || "Submitted!";
+      document.getElementById("message").innerText = "Thanks for submitting!";
+      e.target.reset();
     };
   </script>
 </body>
