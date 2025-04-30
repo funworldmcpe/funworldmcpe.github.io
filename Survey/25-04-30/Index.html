@@ -1,41 +1,47 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <link rel="stylesheet" href="style.css">
   <title>Short Survey</title>
-  <style>
-    body {
-      font-family: sans-serif;
-      padding: 20px;
-      max-width: 600px;
-      margin: auto;
-    }
-    input, button {
-      padding: 8px;
-      width: 100%;
-      margin-bottom: 10px;
-    }
-  </style>
+  <link rel="stylesheet" href="style.css">
 </head>
-<body><body>
+<body>
+  <div id="banner" class="banner" style="display: none;">
+    This survey is closed. Closed on 30/04/25. Closed as a test
+  </div>
+
   <div class="container">
     <h1>Quick Survey</h1>
     <form id="surveyForm">
-    <label>username:</label>
-    <input type="text" name="name" required>
+      <label>username:</label>
+      <input type="text" name="name" required>
 
-    <label>Do you Play skyss0fly's realm?</label>
-    <input type="text" name="userealm" required>
+      <label>Do you Play skyss0fly's realm?</label>
+      <input type="text" name="userealm" required>
 
-    <label>How did you hear about us?</label>
-    <input type="text" name="referral" required>
+      <label>How did you hear about us?</label>
+      <input type="text" name="referral" required>
 
-    <button type="submit">Submit</button>
-  </form>
+      <button type="submit">Submit</button>
+    </form>
 
-  <div id="message"></div>
+    <div id="message"></div>
+  </div>
 
   <script>
+    // Set the close date (YYYY-MM-DD)
+    const closeDate = new Date("2025-04-30");
+    const now = new Date();
+
+    if (now >= closeDate) {
+      document.getElementById("banner").style.display = "block";
+
+      const formElements = document.getElementById("surveyForm").elements;
+      for (let element of formElements) {
+        element.disabled = true;
+      }
+    }
+
+    // OPTIONAL: Discord webhook sending (only runs if form is active)
     document.getElementById("surveyForm").onsubmit = async (e) => {
       e.preventDefault();
       const formData = new FormData(e.target);
@@ -43,15 +49,13 @@
 
       const content = `**New Survey Submission**\n
 **username:** ${data.name}
-**Does Player Play your realm:** ${data.userealm}
-**How did they find funworld:** ${data.referral}`;
+**Does User play your realm:** ${data.userealm}
+**how they found your realm:** ${data.referral}`;
 
-      await fetch("https://discord.com/api/webhooks/1367061106480254978/uK2rsT3Kizq8oOmNuDH6jznTMDAUoKgqztUaNfOJtY5wB7_6MzZONfDSYlDLnKDuqT0a", {
+      await fetch("https://discord.com/api/webhooks/your_webhook_id/your_webhook_token", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          content: content
-        })
+        body: JSON.stringify({ content })
       });
 
       document.getElementById("message").innerText = "Thanks for submitting!";
