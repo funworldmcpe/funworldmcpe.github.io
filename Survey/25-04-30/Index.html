@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Short Survey</title>
+</head>
+<body>
+  <h1>Short Survey</h1>
+  <form id="surveyForm">
+    <label>username: <input type="text" name="name" required></label><br><br>
+    <label>Do you play skyss0fly's realm? <input type="text" name="userealm" required></label><br><br>
+    <label>How did you hear about us? <input type="text" name="referral" required></label><br><br>
+    <button type="submit">Submit</button>
+  </form>
+  <div id="message"></div>
+
+  <script>
+    document.getElementById("surveyForm").onsubmit = async (e) => {
+      e.preventDefault();
+      const formData = new FormData(e.target);
+      const data = Object.fromEntries(formData.entries());
+
+      const response = await fetch("https://funworldsurvey.repl.co/submit", {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify(data)
+      });
+
+      document.getElementById("message").innerText =
+        (await response.text()) || "Submitted!";
+    };
+  </script>
+</body>
+</html>
