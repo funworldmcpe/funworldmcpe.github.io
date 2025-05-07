@@ -1,0 +1,84 @@
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(to right, #f8f9fa, #e9ecef);
+  margin: 0;
+  padding: 40px 20px;
+  display: flex;
+  justify-content: center;
+  padding-top: 60px; /* make room for the fixed banner */
+}
+
+.container {
+  background-color: white;
+  border-radius: 16px;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+  max-width: 500px;
+  width: 100%;
+}.banner {
+  width: 100%;
+  background-color: #ffcc00;
+  color: #222;
+  font-weight: 600;
+  text-align: center;
+  font-size: 16px;
+  padding: 12px 10px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+
+ 
+h1 {
+  text-align: center;
+  color: #343a40;
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  margin: 15px 0 5px;
+  color: #495057;
+  font-weight: 600;
+}
+
+input {
+  width: 100%;
+  padding: 10px;
+  border: 2px solid #ced4da;
+  border-radius: 8px;
+  font-size: 16px;
+  transition: border-color 0.3s;
+}
+
+input:focus {
+  border-color: #5c7cfa;
+  outline: none;
+}
+
+button {
+  width: 100%;
+  background-color: #5c7cfa;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 12px;
+  font-size: 16px;
+  margin-top: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #4c6ef5;
+}
+
+#message {
+  text-align: center;
+  margin-top: 20px;
+  font-weight: bold;
+  color: green;
+}
