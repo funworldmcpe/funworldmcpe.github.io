@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Countdown to the next survey</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #121212;
+      color: white;
+      text-align: center;
+      padding-top: 80px;
+    }
+
+    h1 {
+      font-size: 2.5em;
+      margin-bottom: 40px;
+    }
+
+    .countdown {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .box {
+      background: #1e1e1e;
+      padding: 20px;
+      border-radius: 10px;
+      min-width: 100px;
+      transition: transform 0.3s ease;
+      box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    }
+
+    .number {
+      font-size: 2.5em;
+      transition: all 0.5s ease-in-out;
+    }
+
+    .label {
+      font-size: 1em;
+      margin-top: 8px;
+      color: #aaaaaa;
+    }
+
+    .flip {
+      animation: flip 0.5s ease-in-out;
+    }
+
+    @keyframes flip {
+      0% { transform: rotateX(0); }
+      50% { transform: rotateX(90deg); opacity: 0.3; }
+      100% { transform: rotateX(0); opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+  <h1>Countdown to May 14, 2025</h1>
+  <div class="countdown">
+    <div class="box"><div id="days" class="number">0</div><div class="label">Days</div></div>
+    <div class="box"><div id="hours" class="number">0</div><div class="label">Hours</div></div>
+    <div class="box"><div id="minutes" class="number">0</div><div class="label">Minutes</div></div>
+    <div class="box"><div id="seconds" class="number">0</div><div class="label">Seconds</div></div>
+  </div>
+
+  <script>
+    const targetDate = new Date("May 14, 2025 00:00:00").getTime();
+
+    const ids = ["days", "hours", "minutes", "seconds"];
+    let previousValues = [null, null, null, null];
+
+    function updateCountdown() {
+      const now = new Date().getTime();
+      const distance = targetDate - now;
+
+      if (distance <= 0) {
+        document.querySelector(".countdown").innerHTML = "<h2>The day has arrived!</h2>";
+        return;
+      }
+
+      const values = [
+        Math.floor(distance / (1000 * 60 * 60 * 24)),
+        Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
+        Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)),
+        Math.floor((distance % (1000 * 60)) / 1000)
+      ];
+
+      values.forEach((val, i) => {
+        const el = document.getElementById(ids[i]);
+        if (val !== previousValues[i]) {
+          el.textContent = val;
+          el.classList.remove("flip");
+          void el.offsetWidth; // Force reflow
+          el.classList.add("flip");
+          previousValues[i] = val;
+        }
+      });
+    }
+
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+  </script>
+</body>
+</html>
